@@ -2274,7 +2274,7 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
 /* REQUEST THE HONOUR... */
 .letter-request {
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;        /* ← TUNE THIS */
+  font-size: 15px;        /* ← TUNE THIS */
   line-height: 1.4;
   letter-spacing: .06em;
   color: #641522;
@@ -2427,6 +2427,288 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
     margin: 0 3px !important;
   }
 }
+@media (max-width: 767px) {
+  /* Make "REQUEST THE HONOUR OF YOUR PRESENCE" and "AT OUR NIKAH" smaller */
+  .letter-rule + .letter-date {
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.025em !important;
+    margin: 1px 0 !important;
+  }
+
+  .letter-date + .letter-date {
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.025em !important;
+    margin: 1px 0 !important;
+  }
+}
+</style>
+
+<style id="request-nikah-mobile-fix">
+/* Smaller, muted-grey invitation wording */
+.letter-date {
+  color: #777777 !important;
+}
+
+@media (max-width: 767px) {
+  .letter-rule + .letter-date {
+    font-size: 3px !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.025em !important;
+    margin: 1px 0 !important;
+    color: #777777 !important;
+  }
+
+  .letter-date + .letter-date {
+    font-size: 3px !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.025em !important;
+    margin: 1px 0 !important;
+    color: #777777 !important;
+  }
+}
+</style>
+
+<style id="final-request-nikah-size-fix">
+/* FINAL: only the REQUEST + NIKAH lines are intentionally tiny on mobile.
+   The date remains unchanged. */
+@media (max-width: 767px) {
+  .letter-inner > p.letter-date:nth-of-type(1),
+  .letter-inner > p.letter-date:nth-of-type(2) {
+    font-size: 3px !important;
+    line-height: 1 !important;
+    letter-spacing: .01em !important;
+    margin: 0 !important;
+    color: #777 !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+  }
+}
+</style>
+
+<style id="FINAL-request-nikah-size-fix">
+/* FINAL FIX: these two lines have their own classes so the many older
+   .letter-date rules cannot accidentally control their size. */
+.letter-inner .letter-request,
+.letter-inner .letter-nikah {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+  letter-spacing: .02em !important;
+  color: #777777 !important;
+  font-weight: 500 !important;
+  margin: 2px 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  transform: none !important;
+}
+
+@media (max-width: 767px) {
+  .letter-inner .letter-request,
+  .letter-inner .letter-nikah {
+    font-size: 3px !important;
+    line-height: 1 !important;
+    letter-spacing: .01em !important;
+    margin: 1px 0 !important;
+  }
+}
+</style>
+
+<style id="FINAL-PROPORTIONAL-MOBILE">
+/*
+  FINAL MOBILE PROPORTIONALITY PATCH
+  ---------------------------------
+  Desktop styles are untouched.
+  On phones the opening invitation is scaled from the final
+  desktop envelope proportion (520px wide) instead of using
+  unrelated fixed mobile sizes.
+*/
+@media (max-width: 767px) {
+
+  .invitation-opening {
+    width: 100%;
+    min-height: 100svh;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .invitation-scene {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px !important;
+    box-sizing: border-box;
+  }
+
+  /* Final envelope width: same 1.58:1 desktop geometry, reduced
+     only by the phone viewport width. */
+  .invitation-scene .envelope {
+    width: min(86vw, 520px) !important;
+    max-width: 520px !important;
+    aspect-ratio: 1.58 / 1 !important;
+    margin: 0 auto !important;
+  }
+
+  /* The physical seal scales with the 520px desktop envelope:
+     150px -> about 24.8vw on a phone. */
+  .invitation-scene .wax-seal {
+    width: min(24.8vw, 150px) !important;
+    height: min(24.8vw, 150px) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .invitation-scene .wax-seal::before {
+    inset: 4% !important;
+  }
+
+  .invitation-scene .wax-seal::after {
+    inset: 7.3% !important;
+  }
+
+  .invitation-scene .peacock-seal,
+  .invitation-scene .peacock-seal img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Card geometry remains proportional to the envelope. */
+  .invitation-scene .envelope-letter {
+    left: 7% !important;
+    right: 7% !important;
+    bottom: 2% !important;
+    height: 91% !important;
+    padding: 1.92% !important;
+    box-sizing: border-box !important;
+  }
+
+  .invitation-scene .letter-inner {
+    padding: 1.92% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  /* Desktop 36px crest -> proportional phone size. */
+  .invitation-scene .letter-crest {
+    width: min(6.9vw, 36px) !important;
+    height: min(6.9vw, 36px) !important;
+    margin-bottom: 1.35% !important;
+    flex: 0 0 auto !important;
+  }
+
+  .invitation-scene .letter-crest span {
+    font-size: min(2.1vw, 11px) !important;
+  }
+
+  /* Desktop typography scaled from the final desktop values. */
+  .invitation-scene .letter-small:first-of-type {
+    font-size: min(6.15vw, 32px) !important;
+    line-height: 1.5 !important;
+    margin: 0 0 1.9% !important;
+  }
+
+  .invitation-scene .letter-small:nth-of-type(2) {
+    font-size: min(2.5vw, 13px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: .12em !important;
+    margin: 0 0 2.3% !important;
+    white-space: nowrap !important;
+  }
+
+  .invitation-scene .letter-inner h1 {
+    font-size: min(7.3vw, 38px) !important;
+    line-height: .86 !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .invitation-scene .letter-amp {
+    font-size: min(4.6vw, 24px) !important;
+    line-height: .9 !important;
+    margin: 1% 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .invitation-scene .letter-rule {
+    width: min(10.4vw, 54px) !important;
+    height: 1px !important;
+    margin: 2.1% 0 1.35% !important;
+    flex: 0 0 auto !important;
+  }
+
+  /*
+    Request / Nikah remain intentionally smaller than the names,
+    but now scale proportionally instead of being forced to 3px.
+  */
+  .invitation-scene .letter-request {
+    font-size: min(2.88vw, 15px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: .02em !important;
+    margin: 1.5% 0 !important;
+    color: #777 !important;
+    white-space: nowrap !important;
+  }
+
+  .invitation-scene .letter-nikah {
+    font-size: min(1.92vw, 10px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: .05em !important;
+    margin: 1.5% 0 !important;
+    color: #777 !important;
+    white-space: nowrap !important;
+  }
+
+  .invitation-scene .letter-date {
+    font-size: min(2.5vw, 13px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: .06em !important;
+    margin: 1.5% 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Keep the opening label/hint visually proportional too. */
+  .invitation-scene .opening-kicker {
+    font-size: min(1.73vw, 9px) !important;
+    letter-spacing: .30em !important;
+    margin-bottom: min(4.6vw, 24px) !important;
+  }
+
+  .invitation-scene .opening-hint {
+    font-size: min(1.54vw, 8px) !important;
+    letter-spacing: .22em !important;
+    margin-top: min(3.85vw, 20px) !important;
+  }
+
+  .invitation-scene .opening-hint span {
+    margin: 0 3px !important;
+  }
+
+  /* Keep the card rise proportional to the desktop animation. */
+  .invitation-opening.opening-active .invitation-scene .envelope-letter {
+    transform: translateY(-34%) !important;
+  }
+
+  .invitation-opening.opening-active .invitation-scene .envelope {
+    transform: translateY(2%) scale(1.025) !important;
+  }
+}
+
+/* Very narrow phones: reduce only the overall composition width. */
+@media (max-width: 360px) {
+  .invitation-scene .envelope {
+    width: 84vw !important;
+  }
+
+  .invitation-scene .letter-request {
+    font-size: 2.8vw !important;
+  }
+
+  .invitation-scene .letter-nikah {
+    font-size: 1.9vw !important;
+  }
+}
 </style>
 </head>
 <body class="invitation-locked">
@@ -2466,11 +2748,11 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
 
   
 
-  <p class="letter-date">
+  <p class="letter-date letter-request">
     REQUEST THE HONOUR OF YOUR PRESENCE
   </p>
 
-  <p class="letter-date">
+  <p class="letter-date letter-nikah">
     AT OUR NIKAH
   </p>
 
