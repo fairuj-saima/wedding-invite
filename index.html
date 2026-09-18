@@ -3041,6 +3041,121 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
 }
 </style>
 
+
+<!-- Messenger in-app browser helper -->
+<style id="messenger-browser-helper-style">
+  #messenger-browser-helper{
+    position:fixed;
+    left:50%;
+    top:18px;
+    transform:translateX(-50%);
+    z-index:1000000;
+    width:min(92vw,420px);
+    padding:12px 14px;
+    display:none;
+    align-items:center;
+    gap:10px;
+    background:rgba(10,17,38,.96);
+    border:1px solid rgba(184,154,91,.7);
+    border-radius:12px;
+    box-shadow:0 12px 35px rgba(0,0,0,.35);
+    color:#F3EBDD;
+    font-family:'Montserrat',sans-serif;
+    font-size:12px;
+    line-height:1.45;
+    text-align:left;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  }
+  #messenger-browser-helper.show{display:flex;}
+  #messenger-browser-helper .mbh-text{flex:1;}
+  #messenger-browser-helper button{
+    flex:none;
+    border:1px solid #B89A5B;
+    background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728);
+    color:#111B38;
+    border-radius:999px;
+    padding:9px 12px;
+    font:600 10px 'Montserrat',sans-serif;
+    letter-spacing:.04em;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  #messenger-browser-helper .mbh-close{
+    border:0;
+    background:transparent;
+    color:#F3EBDD;
+    padding:3px;
+    font-size:17px;
+    line-height:1;
+    cursor:pointer;
+  }
+</style>
+
+<div id="messenger-browser-helper" role="dialog" aria-label="Open invitation in browser">
+  <div class="mbh-text">For the full invitation experience, open this page in your browser.</div>
+  <button type="button" id="messenger-browser-open">Open in Browser</button>
+  <button type="button" class="mbh-close" id="messenger-browser-close" aria-label="Close">×</button>
+</div>
+
+<script>
+(function () {
+  function isMessengerInAppBrowser() {
+    var ua = navigator.userAgent || navigator.vendor || "";
+    return /FBAN|FBAV|FB_IAB|FB4A|Messenger/i.test(ua);
+  }
+
+  function getCurrentUrl() {
+    return window.location.href;
+  }
+
+  function openExternalBrowser() {
+    var url = getCurrentUrl();
+
+    // Android: intent URL asks Android to hand the page to an external browser.
+    if (/Android/i.test(navigator.userAgent)) {
+      var clean = url.replace(/^https?:\/\//i, "");
+      var intentUrl =
+        "intent://" + clean +
+        "#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;end";
+      window.location.href = intentUrl;
+
+      // Fallback if the intent is blocked.
+      setTimeout(function () {
+        window.open(url, "_blank");
+      }, 900);
+      return;
+    }
+
+    // iPhone/iPad: the page cannot reliably force Safari from Messenger.
+    // Opening a new tab is the least intrusive fallback.
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  function initMessengerHelper() {
+    if (!isMessengerInAppBrowser()) return;
+
+    var box = document.getElementById("messenger-browser-helper");
+    var open = document.getElementById("messenger-browser-open");
+    var close = document.getElementById("messenger-browser-close");
+
+    if (!box || !open || !close) return;
+
+    box.classList.add("show");
+    open.addEventListener("click", openExternalBrowser);
+    close.addEventListener("click", function () {
+      box.classList.remove("show");
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMessengerHelper);
+  } else {
+    initMessengerHelper();
+  }
+})();
+</script>
+
 </head>
 <body class="invitation-locked">
 
