@@ -2171,7 +2171,7 @@ body.homepage-rising > *:not(.invitation-opening) {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translate3d(0, 100vh, 0);
-  transition: transform 1.55s cubic-bezier(.16,.78,.18,1) !important;
+  transition: transform 2.8s cubic-bezier(.16,.78,.18,1) !important;
 }
 body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   transform: translate3d(0, 0, 0);
@@ -2219,7 +2219,7 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   }
   .invitation-opening.is-closing .envelope {
     transform: translate3d(0, calc(var(--opening-rise-distance, 100vh) * -1.5), 0) scale(1.025);
-    transition: transform 1.55s cubic-bezier(.18,.72,.12,1) !important;
+    transition: transform 2.8s cubic-bezier(.18,.72,.12,1) !important;
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -3365,10 +3365,12 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
         });
 
         /* Remove the opening layer only after the card has cleared the top. */
+        /* Desktop keeps the original elegant 1.55s handoff. Mobile uses a slower 2.8s handoff. */
+        var handoffDuration = window.matchMedia('(max-width: 767px)').matches ? 2850 : 1650;
         window.setTimeout(function(){
           invitationOpening.remove();
           document.body.classList.remove('homepage-rising', 'homepage-rise-now');
-        }, 1650);
+        }, handoffDuration);
       }, 5000);
     }
 
