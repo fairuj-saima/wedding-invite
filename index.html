@@ -2516,200 +2516,219 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
 }
 </style>
 
-<style id="FINAL-PROPORTIONAL-MOBILE">
-/*
-  FINAL MOBILE PROPORTIONALITY PATCH
-  ---------------------------------
-  Desktop styles are untouched.
-  On phones the opening invitation is scaled from the final
-  desktop envelope proportion (520px wide) instead of using
-  unrelated fixed mobile sizes.
-*/
+<style id="FINAL-MOBILE-DESKTOP-MATCH">
+/* =========================================================
+   MOBILE = DESKTOP COMPOSITION, PROPORTIONALLY SCALED
+   The desktop invitation is the source of truth. On phones,
+   the same 520px composition is simply reduced as one system.
+   No desktop rules are changed.
+   ========================================================= */
 @media (max-width: 767px) {
-
+  /* Use the same 520px design coordinate system for everything
+     inside the opening scene. cqw = 1% of the scene width. */
   .invitation-opening {
-    width: 100%;
-    min-height: 100svh;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    box-sizing: border-box;
-  }
-
-  .invitation-scene {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 10px !important;
-    box-sizing: border-box;
-  }
-
-  /* Final envelope width: same 1.58:1 desktop geometry, reduced
-     only by the phone viewport width. */
-  .invitation-scene .envelope {
-    width: min(86vw, 520px) !important;
-    max-width: 520px !important;
-    aspect-ratio: 1.58 / 1 !important;
-    margin: 0 auto !important;
-  }
-
-  /* The physical seal scales with the 520px desktop envelope:
-     150px -> about 24.8vw on a phone. */
-  .invitation-scene .wax-seal {
-    width: min(24.8vw, 150px) !important;
-    height: min(24.8vw, 150px) !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-  }
-
-  .invitation-scene .wax-seal::before {
-    inset: 4% !important;
-  }
-
-  .invitation-scene .wax-seal::after {
-    inset: 7.3% !important;
-  }
-
-  .invitation-scene .peacock-seal,
-  .invitation-scene .peacock-seal img {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  /* Card geometry remains proportional to the envelope. */
-  .invitation-scene .envelope-letter {
-    left: 7% !important;
-    right: 7% !important;
-    bottom: 2% !important;
-    height: 91% !important;
-    padding: 1.92% !important;
-    box-sizing: border-box !important;
-  }
-
-  .invitation-scene .letter-inner {
-    padding: 1.92% !important;
+    padding: 0 !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
 
-  /* Desktop 36px crest -> proportional phone size. */
-  .invitation-scene .letter-crest {
-    width: min(6.9vw, 36px) !important;
-    height: min(6.9vw, 36px) !important;
-    margin-bottom: 1.35% !important;
+  .invitation-opening .invitation-scene {
+    width: min(520px, 86vw) !important;
+    max-width: min(520px, 86vw) !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    container-type: inline-size !important;
+  }
+
+  /* The envelope is exactly the scene width, so every percentage-
+     based piece of the desktop artwork remains geometrically identical. */
+  .invitation-opening .envelope {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    aspect-ratio: 1.58 / 1 !important;
+    transform-origin: center center !important;
+  }
+
+  /* ---------- Elements outside the envelope ---------- */
+  .invitation-opening .opening-kicker {
+    margin-bottom: 4.615cqw !important; /* 24px / 520 */
+    font-size: 1.731cqw !important;      /* 9px / 520 */
+    letter-spacing: .34em !important;
+  }
+
+  .invitation-opening .opening-hint {
+    margin-top: 5.192cqw !important;     /* 27px / 520 */
+    padding: 1.538cqw 2.885cqw !important; /* 8px 15px */
+    font-size: 1.731cqw !important;      /* 9px */
+    letter-spacing: .30em !important;
+  }
+  .invitation-opening .opening-hint span {
+    margin: 0 1.346cqw !important;       /* 7px */
+  }
+
+  /* ---------- Wax seal: 150px on the 520px desktop envelope ---------- */
+  .invitation-opening .wax-seal {
+    width: 28.846cqw !important;
+    height: 28.846cqw !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+  .invitation-opening .wax-seal::before { inset: .769cqw !important; }
+  .invitation-opening .wax-seal::after  { inset: 1.346cqw !important; }
+  .invitation-opening .peacock-seal,
+  .invitation-opening .peacock-seal img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* ---------- Letter geometry: exact desktop values ---------- */
+  .invitation-opening .envelope-letter {
+    left: 7% !important;
+    right: 7% !important;
+    bottom: 2% !important;
+    height: 91% !important;
+    padding: 1.923cqw !important; /* 10px */
+    box-sizing: border-box !important;
+  }
+
+  .invitation-opening .letter-inner {
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .invitation-opening .letter-crest {
+    width: 6.923cqw !important;   /* 36px */
+    height: 6.923cqw !important;
+    margin-bottom: 1.346cqw !important; /* 7px */
     flex: 0 0 auto !important;
   }
-
-  .invitation-scene .letter-crest span {
-    font-size: min(2.1vw, 11px) !important;
+  .invitation-opening .letter-crest span {
+    font-size: 2.115cqw !important; /* 11px */
   }
 
-  /* Desktop typography scaled from the final desktop values. */
-  .invitation-scene .letter-small:first-of-type {
-    font-size: min(6.15vw, 32px) !important;
-    line-height: 1.5 !important;
-    margin: 0 0 1.9% !important;
+  .invitation-opening .letter-small:first-of-type {
+    font-size: 6.154cqw !important; /* 32px */
+    line-height: 1.9 !important;
+    letter-spacing: 0 !important;
+    margin: 0 0 1.923cqw !important; /* 10px */
+    max-width: none !important;
   }
 
-  .invitation-scene .letter-small:nth-of-type(2) {
-    font-size: min(2.5vw, 13px) !important;
-    line-height: 1.25 !important;
-    letter-spacing: .12em !important;
-    margin: 0 0 2.3% !important;
+  .invitation-opening .letter-small:nth-of-type(2) {
+    font-size: 2.5cqw !important; /* 13px */
+    line-height: 1.6 !important;
+    letter-spacing: .16em !important;
+    margin: 0 0 2.308cqw !important; /* 12px */
     white-space: nowrap !important;
   }
 
-  .invitation-scene .letter-inner h1 {
-    font-size: min(7.3vw, 38px) !important;
+  .invitation-opening .letter-inner h1 {
+    font-size: 7.308cqw !important; /* 38px */
     line-height: .86 !important;
+    letter-spacing: .03em !important;
     margin: 0 !important;
     flex: 0 0 auto !important;
   }
 
-  .invitation-scene .letter-amp {
-    font-size: min(4.6vw, 24px) !important;
-    line-height: .9 !important;
-    margin: 1% 0 !important;
+  .invitation-opening .letter-amp {
+    margin: .769cqw 0 !important; /* 4px */
+    font-size: 4.615cqw !important; /* 24px */
+    line-height: normal !important;
     flex: 0 0 auto !important;
   }
 
-  .invitation-scene .letter-rule {
-    width: min(10.4vw, 54px) !important;
+  .invitation-opening .letter-rule {
+    width: 10.385cqw !important; /* 54px */
     height: 1px !important;
-    margin: 2.1% 0 1.35% !important;
+    margin: 2.115cqw 0 1.346cqw !important; /* 11px 0 7px */
     flex: 0 0 auto !important;
   }
 
-  /*
-    Request / Nikah remain intentionally smaller than the names,
-    but now scale proportionally instead of being forced to 3px.
-  */
-  .invitation-scene .letter-request {
-    font-size: min(2.88vw, 15px) !important;
-    line-height: 1.2 !important;
+  /* These are the exact desktop sizes from the final source.
+     Only the scale changes with the phone width. */
+  .invitation-opening .letter-request {
+    font-size: 1.923cqw !important; /* 10px: final desktop override */
+    line-height: 1.4 !important;
     letter-spacing: .02em !important;
-    margin: 1.5% 0 !important;
-    color: #777 !important;
+    color: #777777 !important;
+    font-weight: 500 !important;
+    margin: .385cqw 0 !important; /* 2px: final desktop override */
+    padding: 0 !important;
     white-space: nowrap !important;
   }
-
-  .invitation-scene .letter-nikah {
-    font-size: min(1.92vw, 10px) !important;
-    line-height: 1.2 !important;
-    letter-spacing: .05em !important;
-    margin: 1.5% 0 !important;
-    color: #777 !important;
+  .invitation-opening .letter-nikah {
+    font-size: 1.923cqw !important; /* 10px: final desktop override */
+    line-height: 1.1 !important;
+    letter-spacing: .02em !important;
+    color: #777777 !important;
+    font-weight: 500 !important;
+    margin: .385cqw 0 !important; /* 2px */
+    padding: 0 !important;
     white-space: nowrap !important;
   }
-
-  .invitation-scene .letter-date {
-    font-size: min(2.5vw, 13px) !important;
-    line-height: 1.25 !important;
+  .invitation-opening .letter-date {
+    font-size: 3.077cqw !important; /* 16px final source */
+    line-height: 1.7 !important;
     letter-spacing: .06em !important;
-    margin: 1.5% 0 !important;
+    margin: 1.538cqw 0 !important;
     white-space: nowrap !important;
   }
 
-  /* Keep the opening label/hint visually proportional too. */
-  .invitation-scene .opening-kicker {
-    font-size: min(1.73vw, 9px) !important;
-    letter-spacing: .30em !important;
-    margin-bottom: min(4.6vw, 24px) !important;
+  /* ---------- Opening choreography: IDENTICAL to desktop ---------- */
+  .invitation-opening.opening-active .envelope-flap {
+    transform: rotateX(180deg) !important;
+    z-index: 3 !important;
   }
-
-  .invitation-scene .opening-hint {
-    font-size: min(1.54vw, 8px) !important;
-    letter-spacing: .22em !important;
-    margin-top: min(3.85vw, 20px) !important;
+  .invitation-opening.opening-active .envelope-bottom-flap {
+    transform: rotateX(-180deg) !important;
+    z-index: 8 !important;
   }
-
-  .invitation-scene .opening-hint span {
-    margin: 0 3px !important;
-  }
-
-  /* Keep the card rise proportional to the desktop animation. */
-  .invitation-opening.opening-active .invitation-scene .envelope-letter {
+  .invitation-opening.opening-active .envelope-letter {
     transform: translateY(-34%) !important;
+    z-index: 12 !important;
+  }
+  .invitation-opening.opening-active .envelope {
+    transform: translateY(2%) scale(1.025) !important;
   }
 
-  .invitation-opening.opening-active .invitation-scene .envelope {
-    transform: translateY(2%) scale(1.025) !important;
+  /* ---------- Handoff: card + envelope must travel together ---------- */
+  .invitation-opening.is-closing .envelope-letter {
+    z-index: 50 !important;
+    opacity: 1 !important;
+    transform: translateY(-34%) !important;
+    transition: none !important;
+    box-shadow: 0 30px 55px rgba(0,0,0,.30) !important;
+  }
+  .invitation-opening.is-closing .envelope {
+    z-index: 40 !important;
+    transform: translate3d(0, -150vh, 0) scale(1.025) !important;
+    transition: transform 1.55s cubic-bezier(.18,.72,.12,1) !important;
+  }
+
+  /* Do not let the mobile-specific homepage handoff use a different
+     timing or a different coordinate system. */
+  body.homepage-rising > *:not(.invitation-opening) {
+    transform: translate3d(0, 100vh, 0) !important;
+    transition: transform 1.55s cubic-bezier(.16,.78,.18,1) !important;
+  }
+  body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
+    transform: translate3d(0, 0, 0) !important;
   }
 }
 
-/* Very narrow phones: reduce only the overall composition width. */
 @media (max-width: 360px) {
-  .invitation-scene .envelope {
-    width: 84vw !important;
-  }
-
-  .invitation-scene .letter-request {
-    font-size: 2.8vw !important;
-  }
-
-  .invitation-scene .letter-nikah {
-    font-size: 1.9vw !important;
+  /* Keep the same proportional system even on very small phones. */
+  .invitation-opening .invitation-scene {
+    width: 86vw !important;
+    max-width: 86vw !important;
   }
 }
 </style>
+
 </head>
 <body class="invitation-locked">
 
