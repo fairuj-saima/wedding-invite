@@ -2516,287 +2516,528 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
 }
 </style>
 
-<style id="FINAL-MOBILE-DESKTOP-MATCH">
+<style id="MOBILE_BROWSER_FINAL">
 /* =========================================================
-   MOBILE = DESKTOP COMPOSITION, PROPORTIONALLY SCALED
-   The desktop invitation is the source of truth. On phones,
-   the same 520px composition is simply reduced as one system.
-   No desktop rules are changed.
+   MOBILE BROWSER VERSION — FINAL OVERRIDES
+   Optimized for phone browsers only (max-width: 767px).
    ========================================================= */
-@media (max-width: 767px) {
-  /* Use the same 520px design coordinate system for everything
-     inside the opening scene. cqw = 1% of the scene width. */
-  .invitation-opening {
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
+@media (max-width:767px){
+
+  html,body{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
   }
 
-  .invitation-opening .invitation-scene {
-    width: min(520px, 86vw) !important;
-    max-width: min(520px, 86vw) !important;
-    padding: 0 !important;
-    margin: 0 auto !important;
-    box-sizing: border-box !important;
-    container-type: inline-size !important;
+  body{
+    padding-bottom:0 !important;
   }
 
-  /* The envelope is exactly the scene width, so every percentage-
-     based piece of the desktop artwork remains geometrically identical. */
-  .invitation-opening .envelope {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 auto !important;
-    aspect-ratio: 1.58 / 1 !important;
-    transform-origin: center center !important;
+  /* Compact phone navigation */
+  .site-nav{
+    top:0 !important;
+    bottom:auto !important;
+    left:0 !important;
+    right:0 !important;
+    width:100% !important;
+    height:58px !important;
+    min-height:58px !important;
+    padding:0 6px !important;
+    padding-top:env(safe-area-inset-top) !important;
+    border-top:0 !important;
+    border-bottom:1px solid !important;
+    border-image:var(--gold-gradient) 1 !important;
+    gap:0 !important;
+    justify-content:space-between !important;
   }
 
-  /* ---------- Elements outside the envelope ---------- */
-  .invitation-opening .opening-kicker {
-    margin-bottom: 4.615cqw !important; /* 24px / 520 */
-    font-size: 1.731cqw !important;      /* 9px / 520 */
-    letter-spacing: .34em !important;
+  .site-nav a{
+    flex:1 1 0 !important;
+    min-width:0 !important;
+    min-height:44px !important;
+    height:100% !important;
+    padding:0 2px !important;
+    gap:3px !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    font-size:clamp(7px,2.35vw,10px) !important;
+    line-height:1 !important;
+    letter-spacing:.045em !important;
+    text-transform:uppercase !important;
+    white-space:nowrap !important;
   }
 
-  .invitation-opening .opening-hint {
-    margin-top: 5.192cqw !important;     /* 27px / 520 */
-    padding: 1.538cqw 2.885cqw !important; /* 8px 15px */
-    font-size: 1.731cqw !important;      /* 9px */
-    letter-spacing: .30em !important;
-  }
-  .invitation-opening .opening-hint span {
-    margin: 0 1.346cqw !important;       /* 7px */
+  .site-nav a svg{
+    width:15px !important;
+    height:15px !important;
+    flex:0 0 15px !important;
   }
 
-  /* ---------- Wax seal: 150px on the 520px desktop envelope ---------- */
-  .invitation-opening .wax-seal {
-    width: 28.846cqw !important;
-    height: 28.846cqw !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-  }
-  .invitation-opening .wax-seal::before { inset: .769cqw !important; }
-  .invitation-opening .wax-seal::after  { inset: 1.346cqw !important; }
-  .invitation-opening .peacock-seal,
-  .invitation-opening .peacock-seal img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
+  .site-nav .nav-dot{display:none !important;}
+
+  /* Main page */
+  .hero{
+    min-height:100svh !important;
+    padding:calc(58px + 2rem) 12px 2rem !important;
   }
 
-  /* ---------- Letter geometry: exact desktop values ---------- */
-  .invitation-opening .envelope-letter {
-    left: 7% !important;
-    right: 7% !important;
-    bottom: 2% !important;
-    height: 91% !important;
-    padding: 1.923cqw !important; /* 10px */
-    box-sizing: border-box !important;
+  .hero::before{inset:11px !important;}
+
+  .hero-inner{
+    width:100% !important;
+    max-width:calc(100vw - 24px) !important;
+    padding:3rem 1rem !important;
   }
 
-  .invitation-opening .letter-inner {
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
+  .hero-monogram{
+    font-size:.65rem !important;
+    letter-spacing:.34em !important;
+    margin-bottom:.9rem !important;
   }
 
-  .invitation-opening .letter-crest {
-    width: 6.923cqw !important;   /* 36px */
-    height: 6.923cqw !important;
-    margin-bottom: 1.346cqw !important; /* 7px */
-    flex: 0 0 auto !important;
-  }
-  .invitation-opening .letter-crest span {
-    font-size: 2.115cqw !important; /* 11px */
+  .hero-eyebrow{
+    font-size:1.55rem !important;
   }
 
-  .invitation-opening .letter-small:first-of-type {
-    font-size: 6.154cqw !important; /* 32px */
-    line-height: 1.9 !important;
-    letter-spacing: 0 !important;
-    margin: 0 0 1.923cqw !important; /* 10px */
-    max-width: none !important;
+  .hero-names{
+    font-size:clamp(1.45rem,7vw,2rem) !important;
+    line-height:1.22 !important;
   }
 
-  .invitation-opening .letter-small:nth-of-type(2) {
-    font-size: 2.5cqw !important; /* 13px */
-    line-height: 1.6 !important;
-    letter-spacing: .16em !important;
-    margin: 0 0 2.308cqw !important; /* 12px */
-    white-space: nowrap !important;
+  .hero-amp{
+    font-size:1.65rem !important;
+    margin:.1em 0 !important;
   }
 
-  .invitation-opening .letter-inner h1 {
-    font-size: 7.308cqw !important; /* 38px */
-    line-height: .86 !important;
-    letter-spacing: .03em !important;
-    margin: 0 !important;
-    flex: 0 0 auto !important;
+  .hero-dawat-label{
+    margin-top:1.4rem !important;
+    font-size:.6rem !important;
+    letter-spacing:.3em !important;
   }
 
-  .invitation-opening .letter-amp {
-    margin: .769cqw 0 !important; /* 4px */
-    font-size: 4.615cqw !important; /* 24px */
-    line-height: normal !important;
-    flex: 0 0 auto !important;
+  .hero-datetime{
+    font-size:.95rem !important;
   }
 
-  .invitation-opening .letter-rule {
-    width: 10.385cqw !important; /* 54px */
-    height: 1px !important;
-    margin: 2.115cqw 0 1.346cqw !important; /* 11px 0 7px */
-    flex: 0 0 auto !important;
+  .hero-venue{
+    font-size:.78rem !important;
+    line-height:1.45 !important;
   }
 
-  /* These are the exact desktop sizes from the final source.
-     Only the scale changes with the phone width. */
-  .invitation-opening .letter-request {
-    font-size: 1.923cqw !important; /* 10px: final desktop override */
-    line-height: 1.4 !important;
-    letter-spacing: .02em !important;
-    color: #777777 !important;
-    font-weight: 500 !important;
-    margin: .385cqw 0 !important; /* 2px: final desktop override */
-    padding: 0 !important;
-    white-space: nowrap !important;
-  }
-  .invitation-opening .letter-nikah {
-    font-size: 1.923cqw !important; /* 10px: final desktop override */
-    line-height: 1.1 !important;
-    letter-spacing: .02em !important;
-    color: #777777 !important;
-    font-weight: 500 !important;
-    margin: .385cqw 0 !important; /* 2px */
-    padding: 0 !important;
-    white-space: nowrap !important;
-  }
-  .invitation-opening .letter-date {
-    font-size: 3.077cqw !important; /* 16px final source */
-    line-height: 1.7 !important;
-    letter-spacing: .06em !important;
-    margin: 1.538cqw 0 !important;
-    white-space: nowrap !important;
+  .hero-message{
+    font-size:.75rem !important;
+    line-height:1.6 !important;
   }
 
-  /* ---------- Opening choreography: IDENTICAL to desktop ---------- */
-  .invitation-opening.opening-active .envelope-flap {
-    transform: rotateX(180deg) !important;
-    z-index: 3 !important;
-  }
-  .invitation-opening.opening-active .envelope-bottom-flap {
-    transform: rotateX(-180deg) !important;
-    z-index: 8 !important;
-  }
-  .invitation-opening.opening-active .envelope-letter {
-    transform: translateY(-34%) !important;
-    z-index: 12 !important;
-  }
-  .invitation-opening.opening-active .envelope {
-    transform: translateY(2%) scale(1.025) !important;
+  /* Sections */
+  .section{
+    padding:4rem 0 !important;
   }
 
-  /* ---------- Handoff: card + envelope must travel together ---------- */
-  .invitation-opening.is-closing .envelope-letter {
-    z-index: 50 !important;
-    opacity: 1 !important;
-    transform: translateY(-34%) !important;
-    transition: none !important;
-    box-shadow: 0 30px 55px rgba(0,0,0,.30) !important;
-  }
-  .invitation-opening.is-closing .envelope {
-    z-index: 40 !important;
-    transform: translate3d(0, -150vh, 0) scale(1.025) !important;
-    transition: transform 1.55s cubic-bezier(.18,.72,.12,1) !important;
+  .container{
+    width:100% !important;
+    max-width:100% !important;
+    padding:0 16px !important;
   }
 
-  /* Do not let the mobile-specific homepage handoff use a different
-     timing or a different coordinate system. */
-  body.homepage-rising > *:not(.invitation-opening) {
-    transform: translate3d(0, 100vh, 0) !important;
-    transition: transform 1.55s cubic-bezier(.16,.78,.18,1) !important;
+  .section-head{
+    margin-bottom:2.5rem !important;
   }
-  body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
-    transform: translate3d(0, 0, 0) !important;
+
+  .section-title{
+    font-size:1.55rem !important;
+  }
+
+  .eyebrow-script{
+    font-size:1.45rem !important;
+  }
+
+  /* Couple */
+  .couple-grid{
+    gap:1.8rem !important;
+  }
+
+  .couple-card{
+    padding:2.3rem 1rem 1.5rem !important;
+  }
+
+  .portrait-frame{
+    width:105px !important;
+    height:105px !important;
+    margin-bottom:1.3rem !important;
+  }
+
+  .couple-name{
+    font-size:1.2rem !important;
+  }
+
+  .couple-parentage{
+    font-size:.76rem !important;
+  }
+
+  .couple-divider span{
+    font-size:1.8rem !important;
+  }
+
+  /* Countdown */
+  .countdown-grid{
+    width:100% !important;
+    max-width:330px !important;
+    gap:.65rem !important;
+  }
+
+  .countdown-card{
+    padding:1.25rem .45rem !important;
+    border-radius:11px !important;
+  }
+
+  .countdown-number{
+    font-size:1.75rem !important;
+  }
+
+  .countdown-label{
+    font-size:.56rem !important;
+    letter-spacing:.14em !important;
+  }
+
+  /* Dawat */
+  .dawat-card{
+    width:100% !important;
+    padding:1.4rem 1rem !important;
+    border-radius:20px !important;
+  }
+
+  .dawat-row{
+    gap:.8rem !important;
+    padding:1rem 0 !important;
+  }
+
+  .dawat-icon{
+    width:32px !important;
+    height:32px !important;
+  }
+
+  .dawat-icon svg{
+    width:15px !important;
+    height:15px !important;
+  }
+
+  .dawat-text-label{
+    font-size:.58rem !important;
+  }
+
+  .dawat-text-value{
+    font-size:.95rem !important;
+  }
+
+  .dawat-text-sub{
+    font-size:.7rem !important;
+  }
+
+  /* Venue / map */
+  .venue-layout{
+    gap:1.4rem !important;
+  }
+
+  .venue-hall{
+    font-size:1.25rem !important;
+  }
+
+  .venue-city{
+    font-size:.78rem !important;
+  }
+
+  .venue-datetime{
+    font-size:.84rem !important;
+  }
+
+  .venue-note{
+    font-size:.76rem !important;
+  }
+
+  .map-wrap{
+    height:300px !important;
+    margin-top:1.2rem !important;
+  }
+
+  .btn-gold{
+    min-height:46px !important;
+    padding:0 1.15rem !important;
+    font-size:.76rem !important;
+  }
+
+  /* Story */
+  .editorial-copy{
+    font-size:1.08rem !important;
+    line-height:1.7 !important;
+  }
+
+  .story-grid{
+    gap:1rem !important;
+  }
+
+  .story-card{
+    padding:1.5rem 1rem !important;
+  }
+
+  .story-title{
+    font-size:1.45rem !important;
+  }
+
+  .story-text{
+    font-size:.75rem !important;
+    line-height:1.65 !important;
+  }
+
+  /* Events */
+  .event-item{
+    grid-template-columns:48px 1fr !important;
+    gap:.7rem !important;
+    padding:1.2rem 0 !important;
+  }
+
+  .event-date{
+    font-size:1rem !important;
+  }
+
+  .event-name{
+    font-size:1.3rem !important;
+  }
+
+  .event-description{
+    font-size:.7rem !important;
+  }
+
+  .event-time{
+    grid-column:2 !important;
+    font-size:.57rem !important;
+    margin-top:.25rem !important;
+  }
+
+  /* Archives */
+  .archive-grid{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:8px !important;
+  }
+
+  .archive-photo{
+    padding:.7rem !important;
+  }
+
+  .archive-photo span{
+    font-size:.95rem !important;
+  }
+
+  /* RSVP */
+  .rsvp-card{
+    width:100% !important;
+    padding:2rem 1rem !important;
+  }
+
+  .rsvp-card h3{
+    font-size:1.7rem !important;
+  }
+
+  .rsvp-card p{
+    font-size:.9rem !important;
+  }
+
+  .rsvp-button{
+    padding:.75rem 1rem !important;
+    font-size:.58rem !important;
+  }
+
+  /* Closing */
+  #closing{
+    padding-top:4rem !important;
+    padding-bottom:4rem !important;
+  }
+
+  .closing-names{
+    font-size:1.55rem !important;
+  }
+
+  footer{
+    padding:1.2rem !important;
+  }
+
+  footer .foot-names{font-size:.82rem !important;}
+  footer .foot-date{font-size:.68rem !important;}
+
+  /* Opening invitation */
+  .invitation-opening{
+    padding-top:env(safe-area-inset-top) !important;
+    padding-bottom:env(safe-area-inset-bottom) !important;
+  }
+
+  .invitation-opening::before{inset:10px !important;}
+  .invitation-opening::after{inset:17px !important;}
+
+  .invitation-scene{
+    width:100% !important;
+    max-width:100% !important;
+    padding:0 12px !important;
+  }
+
+  .opening-kicker{
+    margin-bottom:15px !important;
+    font-size:7px !important;
+    letter-spacing:.24em !important;
+  }
+
+  .envelope{
+    width:min(86vw,520px) !important;
+    max-width:520px !important;
+    aspect-ratio:1.58 / 1 !important;
+    margin:0 auto !important;
+  }
+
+  /* Small seal, but still clearly tappable */
+  .wax-seal{
+    width:46px !important;
+    height:46px !important;
+    min-width:46px !important;
+    min-height:46px !important;
+  }
+
+  .wax-seal::before{inset:4px !important;}
+  .wax-seal::after{inset:7px !important;}
+
+  .peacock-seal,
+  .peacock-seal img{
+    width:100% !important;
+    height:100% !important;
+  }
+
+  /* Keep card contents comfortably inside the envelope */
+  .envelope-letter{
+    left:7% !important;
+    right:7% !important;
+    bottom:2% !important;
+    height:91% !important;
+    padding:4px !important;
+  }
+
+  .letter-inner{
+    padding:4px !important;
+    overflow:hidden !important;
+  }
+
+  .letter-crest{
+    width:20px !important;
+    height:20px !important;
+    margin-bottom:2px !important;
+  }
+
+  .letter-crest span{font-size:6px !important;}
+
+  .letter-small:first-of-type{
+    font-size:clamp(12px,4vw,17px) !important;
+    line-height:1.2 !important;
+    margin:0 0 2px !important;
+  }
+
+  .letter-small:nth-of-type(2){
+    font-size:clamp(5px,1.75vw,8px) !important;
+    line-height:1.15 !important;
+    letter-spacing:.055em !important;
+    margin:0 0 3px !important;
+    white-space:nowrap !important;
+  }
+
+  .letter-inner h1{
+    font-size:clamp(19px,5.7vw,27px) !important;
+    line-height:.82 !important;
+  }
+
+  .letter-amp{
+    font-size:clamp(11px,3.5vw,17px) !important;
+    line-height:.85 !important;
+    margin:1px 0 !important;
+  }
+
+  .letter-rule{
+    width:28px !important;
+    margin:3px 0 2px !important;
+  }
+
+  /* Request and Nikah are small and muted grey on mobile */
+  .letter-inner .letter-request,
+  .letter-inner .letter-nikah{
+    font-family:'Montserrat',sans-serif !important;
+    font-size:clamp(6px,2vw,9px) !important;
+    line-height:1.05 !important;
+    letter-spacing:.01em !important;
+    color:#777777 !important;
+    font-weight:500 !important;
+    margin:1px 0 !important;
+    padding:0 !important;
+    white-space:nowrap !important;
+  }
+
+  /* Date stays readable */
+  .letter-inner > p.letter-date:not(.letter-request):not(.letter-nikah){
+    font-size:clamp(7px,2.2vw,10px) !important;
+    line-height:1.1 !important;
+    letter-spacing:.035em !important;
+    margin:2px 0 !important;
+    color:#641522 !important;
+    white-space:nowrap !important;
+  }
+
+  .opening-hint{
+    margin-top:12px !important;
+    padding:4px 7px !important;
+    font-size:6px !important;
+    letter-spacing:.14em !important;
+  }
+
+  .opening-hint span{margin:0 3px !important;}
+
+  .envelope-inner-cavity{
+    left:3.5% !important;
+    right:3.5% !important;
+    top:23% !important;
+    height:49% !important;
+  }
+
+  .invitation-opening.opening-active .envelope-letter{
+    transform:translateY(-32%) !important;
+  }
+
+  .invitation-opening.opening-active .envelope{
+    transform:translateY(2%) scale(1.025) !important;
+  }
+
+  .invitation-opening.is-closing .envelope-letter{
+    transform:translateY(-32%) !important;
+  }
+
+  .invitation-opening.is-closing .envelope{
+    transform:translate3d(0,-150svh,0) scale(1.025) !important;
   }
 }
 
-@media (max-width: 360px) {
-  /* Keep the same proportional system even on very small phones. */
-  .invitation-opening .invitation-scene {
-    width: 86vw !important;
-    max-width: 86vw !important;
+@media (max-width:360px){
+  .site-nav a{
+    font-size:6.5px !important;
+    letter-spacing:.025em !important;
   }
-}
-</style>
 
+  .site-nav a svg{
+    width:13px !important;
+    height:13px !important;
+    flex-basis:13px !important;
+  }
 
-<style id="FINAL-MOBILE-SEAL-WRITING-SIZE">
-/* FINAL MOBILE SCALE TUNING: desktop unchanged.
-   The mobile envelope keeps its desktop proportions, while the seal and
-   typography are deliberately reduced so the card has the same visual
-   breathing room as the desktop composition. */
-@media (max-width: 767px) {
-  .invitation-opening .wax-seal {
-    width: 18vw !important;
-    height: 18vw !important;
-    max-width: 94px !important;
-    max-height: 94px !important;
-  }
-  .invitation-opening .wax-seal::before { inset: 3% !important; }
-  .invitation-opening .wax-seal::after  { inset: 7% !important; }
+  .envelope{width:84vw !important;}
 
-  /* Card typography — smaller on phones, with the same hierarchy. */
-  .invitation-opening .letter-crest {
-    width: 5.3vw !important;
-    height: 5.3vw !important;
-    margin-bottom: 1vw !important;
+  .letter-inner .letter-request,
+  .letter-inner .letter-nikah{
+    font-size:5.5px !important;
   }
-  .invitation-opening .letter-crest span { font-size: 1.6vw !important; }
-  .invitation-opening .letter-small:first-of-type {
-    font-size: 4.1vw !important;
-    line-height: 1.35 !important;
-    margin-bottom: 1.2vw !important;
-  }
-  .invitation-opening .letter-small:nth-of-type(2) {
-    font-size: 1.7vw !important;
-    line-height: 1.3 !important;
-    letter-spacing: .12em !important;
-    margin-bottom: 1.4vw !important;
-  }
-  .invitation-opening .letter-inner h1 {
-    font-size: 4.9vw !important;
-    line-height: .9 !important;
-    letter-spacing: .02em !important;
-  }
-  .invitation-opening .letter-amp {
-    font-size: 3.2vw !important;
-    line-height: .9 !important;
-    margin: .7vw 0 !important;
-  }
-  .invitation-opening .letter-rule {
-    width: 7vw !important;
-    margin: 1.3vw 0 .8vw !important;
-  }
-  .invitation-opening .letter-request,
-  .invitation-opening .letter-nikah {
-    font-size: 1.25vw !important;
-    line-height: 1.15 !important;
-    margin: .35vw 0 !important;
-    letter-spacing: .01em !important;
-  }
-  .invitation-opening .letter-date {
-    font-size: 2vw !important;
-    line-height: 1.25 !important;
-    margin: .8vw 0 !important;
-  }
-}
-@media (max-width: 360px) {
-  .invitation-opening .wax-seal {
-    width: 17vw !important;
-    height: 17vw !important;
-  }
-  .invitation-opening .letter-request,
-  .invitation-opening .letter-nikah { font-size: 1.2vw !important; }
 }
 </style>
 
