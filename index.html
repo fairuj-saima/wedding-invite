@@ -2306,6 +2306,127 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   text-align: center;
   margin: 8px 0;
 }
+
+/* =========================================================
+   MOBILE DESKTOP-MATCH PATCH
+   The desktop envelope/card is the reference composition.
+   On phones, all fixed-size parts are scaled in the same
+   proportion as the envelope so nothing changes shape,
+   spacing, or typography relative to desktop.
+   ========================================================= */
+@media (max-width: 767px) {
+
+  /* Use the same 520px design canvas as desktop, then scale
+     the visual composition down to the phone width. */
+  .invitation-scene {
+    padding: 0;
+  }
+
+  .envelope {
+    width: min(520px, 86vw);
+    max-width: 520px;
+    aspect-ratio: 1.58 / 1;
+    margin: 0 auto;
+    transform-origin: center center;
+  }
+
+  /* The card follows the exact same proportions as desktop. */
+  .envelope-letter {
+    left: 7%;
+    right: 7%;
+    bottom: 2%;
+    height: 91%;
+    padding: 10px;
+  }
+
+  /* Desktop typography, scaled with the phone envelope width. */
+  .letter-crest {
+    width: 5.95vw;
+    height: 5.95vw;
+    max-width: 36px;
+    max-height: 36px;
+    margin-bottom: 1.15vw;
+  }
+
+  .letter-crest span {
+    font-size: 1.83vw;
+  }
+
+  .letter-small:first-of-type {
+    font-size: 5.29vw !important;
+    line-height: 1.9;
+    margin-bottom: 1.65vw;
+  }
+
+  .letter-small:nth-of-type(2) {
+    font-size: 2.15vw !important;
+    line-height: 1.6;
+    margin-bottom: 2vw;
+  }
+
+  .letter-inner h1 {
+    font-size: 6.27vw !important;
+    line-height: .86;
+  }
+
+  .letter-amp {
+    font-size: 3.97vw !important;
+    margin: .65vw 0;
+  }
+
+  .letter-rule {
+    width: 8.92vw;
+    height: 1px;
+    margin: 1.82vw 0 1.15vw;
+  }
+
+  .letter-request {
+    font-size: 1.65vw !important;
+    line-height: 1.4;
+    letter-spacing: .06em;
+    margin: 1.5vw 0;
+  }
+
+  .letter-nikah {
+    font-size: 1.65vw !important;
+    line-height: 1.4;
+    letter-spacing: .08em;
+    margin: 1.5vw 0;
+  }
+
+  .letter-date {
+    font-size: 2.15vw !important;
+    line-height: 1.5;
+    letter-spacing: .08em;
+    margin: 1.5vw 0;
+  }
+
+  /* Scale the seal with the same 520px -> phone ratio. */
+  .wax-seal {
+    width: 24.8vw;
+    height: 24.8vw;
+  }
+
+  /* Same opening movement as desktop, expressed on the
+     smaller envelope rather than using a different mobile
+     choreography. */
+  .invitation-opening.opening-active .envelope-letter {
+    transform: translateY(-34%);
+  }
+
+  .invitation-opening.opening-active .envelope {
+    transform: translateY(2%) scale(1.025);
+  }
+
+  .invitation-opening.is-closing .envelope-letter {
+    transform: translateY(-34%);
+  }
+
+  .invitation-opening.is-closing .envelope {
+    transform: translate3d(0, -150svh, 0) scale(1.025);
+  }
+}
+
 </style>
 </head>
 <body class="invitation-locked">
