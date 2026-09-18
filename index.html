@@ -2807,13 +2807,27 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
     height:100% !important;
   }
 
-  /* Keep card contents comfortably inside the envelope */
-  .envelope-letter{
+/* Ensure the envelope allows the letter to pop out vertically without clipping */
+  .envelope {
+    overflow: visible !important;
+  }
+
+  /* Sealed state: keep card tucked inside behind envelope front */
+  .envelope-letter {
     left:7% !important;
     right:7% !important;
     bottom:2% !important;
     height:91% !important;
     padding:4px !important;
+    z-index: 2 !important;
+    transform: translateY(9%) !important;
+    transition: transform 1.15s cubic-bezier(.2,.75,.2,1) 0.25s, z-index 0s linear 0.7s !important;
+  }
+
+  /* Unsealed state: pop card out over the envelope when seal breaks */
+  .invitation-opening.opening-active .envelope-letter {
+    z-index: 12 !important;
+    transform: translateY(-32%) !important;
   }
 
   .letter-inner{
@@ -2893,8 +2907,10 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
     transform:translateY(2%) scale(1.025) !important;
   }
 
-  .invitation-opening.is-closing .envelope-letter{
-    transform:translateY(-32%) !important;
+.invitation-opening.is-closing .envelope-letter{
+    z-index: 50 !important;
+    transform: translateY(-32%) !important;
+    transition: none !important;
   }
 
   .invitation-opening.is-closing .envelope{
