@@ -3039,81 +3039,10 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
     font-size:5.5px !important;
   }
 }
-
-
-  /* =========================================================
-     MOBILE IN-APP BROWSER HELPER
-     Shown only when the invitation is opened inside an app's
-     embedded browser (Messenger, Facebook, Instagram, etc.).
-     Normal Chrome/Safari mobile browsers never show it.
-     ========================================================= */
-  .mobile-browser-helper{
-    position:fixed;
-    inset:0;
-    z-index:100001;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-    background:rgba(7,17,43,.96);
-    text-align:center;
-  }
-  .mobile-browser-helper.is-visible{ display:flex; }
-  .mobile-browser-helper-card{
-    width:min(360px,100%);
-    padding:30px 24px 26px;
-    border:1px solid rgba(184,154,91,.55);
-    background:linear-gradient(145deg,#111B38,#24000A);
-    box-shadow:0 24px 70px rgba(0,0,0,.5);
-  }
-  .mobile-browser-helper-title{
-    font-family:'Cormorant Garamond',serif;
-    font-size:25px;
-    color:#F3EBDD;
-    margin-bottom:10px;
-  }
-  .mobile-browser-helper-text{
-    font-family:'Montserrat',sans-serif;
-    font-size:12px;
-    line-height:1.7;
-    color:#F3EBDD;
-    opacity:.82;
-    margin-bottom:20px;
-  }
-  .mobile-browser-helper-button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:48px;
-    padding:0 22px;
-    border:0;
-    border-radius:28px;
-    background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);
-    color:#160006;
-    font-family:'Montserrat',sans-serif;
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    cursor:pointer;
-  }
-  @media (min-width:768px){
-    .mobile-browser-helper{ display:none !important; }
-  }
 </style>
 
 </head>
 <body class="invitation-locked">
-
-<!-- Mobile in-app browser helper: hidden automatically in normal Chrome/Safari. -->
-<div class="mobile-browser-helper" id="mobileBrowserHelper" aria-hidden="true">
-  <div class="mobile-browser-helper-card">
-    <div class="mobile-browser-helper-title">Open in your browser</div>
-    <p class="mobile-browser-helper-text">For the best invitation experience, please open this invitation in your phone's browser.</p>
-    <button class="mobile-browser-helper-button" id="openExternalBrowser" type="button">Open in Browser</button>
-  </div>
-</div>
-
 
 <!-- =========================================================
      OPENING INVITATION / WAX SEAL
@@ -3507,51 +3436,6 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   /* =========================================================
      ROYAL INVITATION OPENING
      ========================================================= */
-  /* =========================================================
-     MOBILE IN-APP BROWSER DETECTION
-     Normal mobile Chrome/Safari = no helper.
-     Embedded browsers inside apps = show helper first.
-     ========================================================= */
-  (function(){
-    var helper = document.getElementById('mobileBrowserHelper');
-    var externalButton = document.getElementById('openExternalBrowser');
-    var ua = navigator.userAgent || navigator.vendor || window.opera || '';
-    var isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
-
-    /* Common embedded/in-app browser signatures. */
-    var isAndroidWebView = /; wv\\)|\\bwv\\b|Version\\/4\\.0/i.test(ua);
-    var isIosInApp = /FBAN|FBAV|FBIOS|Instagram|Messenger|Line\\/|LinkedInApp|Twitter|TikTok|Snapchat|GSA\\//i.test(ua);
-    var isOtherInApp = /;FB_IAB|;FB4A|;FB4B|;FBAV|;FBSV|;FBIOS|;FBSS|WebView/i.test(ua);
-    var isInAppBrowser = isMobile && (isAndroidWebView || isIosInApp || isOtherInApp);
-
-    if(isInAppBrowser && helper){
-      helper.classList.add('is-visible');
-      helper.setAttribute('aria-hidden','false');
-    }
-
-    if(externalButton){
-      externalButton.addEventListener('click', function(){
-        var url = window.location.href;
-
-        /* Android: use an intent URL so supported app browsers hand off to Chrome. */
-        if(/Android/i.test(ua)){
-          var cleanUrl = url.replace(/^https?:\\/\\//i,'');
-          window.location.href = 'intent://' + cleanUrl + '#Intent;scheme=https;action=android.intent.action.VIEW;end';
-          return;
-        }
-
-        /* iPhone/iPad: request Safari where the embedded browser permits it. */
-        if(/iPhone|iPad|iPod/i.test(ua)){
-          var safariUrl = url.replace(/^https?:\\/\\//i,'');
-          window.location.href = 'x-safari-https://' + safariUrl;
-          return;
-        }
-
-        window.open(url, '_blank', 'noopener,noreferrer');
-      });
-    }
-  })();
-
   var invitationOpening = document.getElementById('invitationOpening');
   var openInvitation = document.getElementById('openInvitation');
   var openingHint = document.getElementById('openingHint');
