@@ -2205,17 +2205,23 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   transition: transform 1.55s cubic-bezier(.18,.72,.12,1);
 }
 @media (max-width: 767px) {
+  /* Freeze the mobile travel distance so browser chrome resizing cannot
+     change the rise distance while the animation is running. */
   body.homepage-rising > *:not(.invitation-opening) {
-    transform: translate3d(0, 100svh, 0);
-    transition-duration: 1.4s !important;
+    transform: translate3d(0, var(--opening-rise-distance, 100vh), 0);
+    transition: transform 1.55s cubic-bezier(.16,.78,.18,1) !important;
+    will-change: transform;
+    backface-visibility: hidden;
   }
   .invitation-opening.is-closing .envelope-letter {
     transform: translateY(-32%);
     transition: none;
   }
   .invitation-opening.is-closing .envelope {
-    transform: translate3d(0, -150svh, 0) scale(1.025);
-    transition-duration: 1.4s;
+    transform: translate3d(0, calc(var(--opening-rise-distance, 100vh) * -1.5), 0) scale(1.025);
+    transition: transform 1.55s cubic-bezier(.18,.72,.12,1) !important;
+    will-change: transform;
+    backface-visibility: hidden;
   }
 }
 /* ==============================
@@ -2269,30 +2275,6 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   height: 1px;
   margin: 11px 0 7px;
   background: #B89A5B;
-}
-
-/* REQUEST THE HONOUR... */
-.letter-request {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;        /* ← TUNE THIS */
-  line-height: 1.4;
-  letter-spacing: .06em;
-  color: #641522;
-  font-weight: 600;
-  text-align: center;
-  margin: 8px 0;
-}
-
-/* AT OUR NIKAH */
-.letter-nikah {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;        /* ← TUNE THIS */
-  line-height: 1.4;
-  letter-spacing: .08em;
-  color: #641522;
-  font-weight: 600;
-  text-align: center;
-  margin: 8px 0;
 }
 
 /* DATE */
@@ -2427,93 +2409,7 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
     margin: 0 3px !important;
   }
 }
-@media (max-width: 767px) {
-  /* Make "REQUEST THE HONOUR OF YOUR PRESENCE" and "AT OUR NIKAH" smaller */
-  .letter-rule + .letter-date {
-    font-size: 13px !important;
-    line-height: 1.1 !important;
-    letter-spacing: 0.025em !important;
-    margin: 1px 0 !important;
-  }
 
-  .letter-date + .letter-date {
-    font-size: 13px !important;
-    line-height: 1.1 !important;
-    letter-spacing: 0.025em !important;
-    margin: 1px 0 !important;
-  }
-}
-</style>
-
-<style id="request-nikah-mobile-fix">
-/* Smaller, muted-grey invitation wording */
-.letter-date {
-  color: #777777 !important;
-}
-
-@media (max-width: 767px) {
-  .letter-rule + .letter-date {
-    font-size: 3px !important;
-    line-height: 1.1 !important;
-    letter-spacing: 0.025em !important;
-    margin: 1px 0 !important;
-    color: #777777 !important;
-  }
-
-  .letter-date + .letter-date {
-    font-size: 3px !important;
-    line-height: 1.1 !important;
-    letter-spacing: 0.025em !important;
-    margin: 1px 0 !important;
-    color: #777777 !important;
-  }
-}
-</style>
-
-<style id="final-request-nikah-size-fix">
-/* FINAL: only the REQUEST + NIKAH lines are intentionally tiny on mobile.
-   The date remains unchanged. */
-@media (max-width: 767px) {
-  .letter-inner > p.letter-date:nth-of-type(1),
-  .letter-inner > p.letter-date:nth-of-type(2) {
-    font-size: 3px !important;
-    line-height: 1 !important;
-    letter-spacing: .01em !important;
-    margin: 0 !important;
-    color: #777 !important;
-    font-weight: 500 !important;
-    white-space: nowrap !important;
-  }
-}
-</style>
-
-<style id="FINAL-request-nikah-size-fix">
-/* FINAL FIX: these two lines have their own classes so the many older
-   .letter-date rules cannot accidentally control their size. */
-.letter-inner .letter-request,
-.letter-inner .letter-nikah {
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 10px !important;
-  line-height: 1.1 !important;
-  letter-spacing: .02em !important;
-  color: #777777 !important;
-  font-weight: 500 !important;
-  margin: 2px 0 !important;
-  padding: 0 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  transform: none !important;
-}
-
-@media (max-width: 767px) {
-  .letter-inner .letter-request,
-  .letter-inner .letter-nikah {
-    font-size: 3px !important;
-    line-height: 1 !important;
-    letter-spacing: .01em !important;
-    margin: 1px 0 !important;
-  }
-}
 </style>
 
 <style id="MOBILE_BROWSER_FINAL">
@@ -2963,20 +2859,6 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
     margin:3px 0 2px !important;
   }
 
-  /* Request and Nikah are small and muted grey on mobile */
-  .letter-inner .letter-request,
-  .letter-inner .letter-nikah{
-    font-family:'Montserrat',sans-serif !important;
-    font-size:clamp(6px,2vw,9px) !important;
-    line-height:1.05 !important;
-    letter-spacing:.01em !important;
-    color:#777777 !important;
-    font-weight:500 !important;
-    margin:1px 0 !important;
-    padding:0 !important;
-    white-space:nowrap !important;
-  }
-
   /* Date stays readable */
   .letter-inner > p.letter-date:not(.letter-request):not(.letter-nikah){
     font-size:clamp(7px,2.2vw,10px) !important;
@@ -3016,7 +2898,10 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   }
 
   .invitation-opening.is-closing .envelope{
-    transform:translate3d(0,-150svh,0) scale(1.025) !important;
+    transform:translate3d(0,calc(var(--opening-rise-distance, 100vh) * -1.5),0) scale(1.025) !important;
+    transition:transform 1.55s cubic-bezier(.18,.72,.12,1) !important;
+    will-change:transform;
+    backface-visibility:hidden;
   }
 }
 
@@ -3442,6 +3327,12 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
 
   if (invitationOpening && openInvitation) {
     document.body.classList.add('invitation-locked');
+
+    // Freeze the mobile viewport height once, before the rise starts.
+    function setOpeningRiseDistance(){
+      document.documentElement.style.setProperty('--opening-rise-distance', window.innerHeight + 'px');
+    }
+    setOpeningRiseDistance();
 
     // Reveal opening overlay without flashing
     requestAnimationFrame(function(){
