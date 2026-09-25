@@ -4162,17 +4162,17 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   <div class="date-gallery">
 
     <div class="date-photo">
-  <img src="photo1.JPG" alt="Wedding memory one" loading="eager" onerror="this.onerror=null;this.parentElement.classList.add('img-fallback');">
+  <img src="photo1.JPG" alt="Wedding memory one" loading="eager" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.parentElement.classList.add('img-fallback');">
   <span class="date-photo-number">23</span>
 </div>
 
 <div class="date-photo">
-  <img src="photo2.JPG" alt="Wedding memory two" loading="eager" onerror="this.onerror=null;this.parentElement.classList.add('img-fallback');">
+  <img src="photo2.JPG" alt="Wedding memory two" loading="eager" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.parentElement.classList.add('img-fallback');">
   <span class="date-photo-number">11</span>
 </div>
 
 <div class="date-photo">
-  <img src="photo3.JPG" alt="Wedding memory three" loading="eager" onerror="this.onerror=null;this.parentElement.classList.add('img-fallback');">
+  <img src="photo3.JPG" alt="Wedding memory three" loading="eager" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.parentElement.classList.add('img-fallback');">
   <span class="date-photo-number">26</span>
 </div>
 
@@ -4524,6 +4524,7 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
         if(!dateGallery) return;
 
         var datePhotos = dateGallery.querySelectorAll('.date-photo');
+        var dateImgs = dateGallery.querySelectorAll('.date-photo img');
 
         function showDatePhotos(){
           datePhotos.forEach(function(photo){
@@ -4538,19 +4539,47 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
           }, 1200);
         }
 
+        /* Wait until the photos have actually finished downloading before
+           sliding/fading them in. Large, uncompressed camera photos can
+           still be downloading when the section scrolls into view; revealing
+           an empty box and having the photo "pop" in moments later is what
+           reads as the photos flickering in and out. We wait for every
+           image (up to 2.5s), whichever comes first. */
+        function whenImagesReady(cb){
+          var pending = 0;
+          var done = false;
+          function finish(){
+            if(done) return;
+            done = true;
+            cb();
+          }
+          dateImgs.forEach(function(img){
+            if(img.complete && img.naturalWidth > 0) return;
+            pending++;
+            var onSettle = function(){
+              pending--;
+              if(pending <= 0) finish();
+            };
+            img.addEventListener('load', onSettle, { once:true });
+            img.addEventListener('error', onSettle, { once:true });
+          });
+          if(pending === 0){ finish(); return; }
+          window.setTimeout(finish, 2500);
+        }
+
         if('IntersectionObserver' in window){
           var dateObserver = new IntersectionObserver(function(entries, observer){
             entries.forEach(function(entry){
               if(entry.isIntersecting){
-                showDatePhotos();
                 observer.disconnect();
+                whenImagesReady(showDatePhotos);
               }
             });
           }, { threshold:0.12 });
 
           dateObserver.observe(dateGallery);
         } else {
-          showDatePhotos();
+          whenImagesReady(showDatePhotos);
         }
       })();
       gsap.from('#date .date-countdown-caption', {
