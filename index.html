@@ -3003,17 +3003,16 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   }
 
 @media (max-width: 767px) {
-  /* Keep the home-page couple names identical to the desktop typography. */
+  /* Scale the home-page couple names to fit phone screens. */
   .hero-names {
     font-family: "Parisienne", cursive !important;
-    font-size: 82px !important;
+    font-size: clamp(1.8rem, 9vw, 2.6rem) !important;
     font-weight: 400 !important;
     font-style: normal !important;
-    line-height: 1.1 !important;
+    line-height: 1.15 !important;
     letter-spacing: 0 !important;
     text-transform: none !important;
     color: #641522 !important;
-    
     word-break: break-word;
   }
 
@@ -3470,16 +3469,18 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   }
   .hero-ornament b{ font-size:11px !important; }
 
-  /* Keep home-page couple names at the same desktop typography on mobile. */
+  /* Scale the couple names to fit the phone screen instead of forcing the
+     fixed desktop size (82px, nowrap) that was overflowing the viewport. */
   .hero-names{
     font-family:"Parisienne", cursive !important;
-    font-size:82px !important;
+    font-size:clamp(1.8rem, 9vw, 2.6rem) !important;
     font-weight:400 !important;
     font-style:normal !important;
-    white-space:nowrap !important;
-    line-height:1.1 !important;
+    white-space:normal !important;
+    line-height:1.15 !important;
     letter-spacing:0 !important;
     text-transform:none !important;
+    text-wrap:balance;
   }
 
   .hero-amp{
