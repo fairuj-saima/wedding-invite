@@ -3618,98 +3618,46 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
 #date .date-head{ margin-bottom:0; }
 
 /* Save the Date — bigger, classy display italic in antique gold */
-/* --- "Save the Date" TITLE SHADOW --- */
-#date .date-eyebrow{
-  display:inline-block;
-  font-family:var(--date-display);
-  font-style:italic;
-  font-weight:500;
-  font-size:clamp(2.5rem, 11.5vw, 3.2rem);
-  line-height:1.08;
-  letter-spacing:.005em;
-  text-transform:none;
-  padding:.04em .14em .16em;
-  background:var(--gold-gradient);
-  -webkit-background-clip:text;
-          background-clip:text;
-  -webkit-text-fill-color:transparent;
-  color:transparent;
-  /* Multi-layered shadow to make the gradient title pop over light background areas */
-  filter:
-    drop-shadow(-1px -1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(1px -1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(-1px 1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(0 3px 10px rgba(10, 0, 5, 0.95))
-    drop-shadow(0 0 20px rgba(10, 0, 5, 0.85)) !important;
+#date .date-eyebrow {
+  display: inline-block;
+  font-family: var(--date-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 11.5vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: .005em;
+  text-transform: none;
+  padding: .04em .14em .16em;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Deep multi-layered shadow for gradient text */
+  filter: 
+    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95))
+    drop-shadow(0 0 16px rgba(10, 0, 5, 0.95))
+    drop-shadow(0 0 32px rgba(10, 0, 5, 0.85)) !important;
 }
-
-/* --- "counting the days..." CAPTION SHADOW --- */
-/* --- "Save the Date" TITLE SHADOW --- */
-#date .date-eyebrow{
-  display:inline-block;
-  font-family:var(--date-display);
-  font-style:italic;
-  font-weight:500;
-  font-size:clamp(2.5rem, 11.5vw, 3.2rem);
-  line-height:1.08;
-  letter-spacing:.005em;
-  text-transform:none;
-  padding:.04em .14em .16em;
-  background:var(--gold-gradient);
-  -webkit-background-clip:text;
-          background-clip:text;
-  -webkit-text-fill-color:transparent;
-  color:transparent;
-  /* Multi-layered shadow to make the gradient title pop over light background areas */
-  filter:
-    drop-shadow(-1px -1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(1px -1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(-1px 1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(0 3px 10px rgba(10, 0, 5, 0.95))
-    drop-shadow(0 0 20px rgba(10, 0, 5, 0.85)) !important;
-}
-
-/* --- "counting the days..." CAPTION SHADOW --- */
-#date .date-countdown-caption{
-  margin:0 0 .85rem;
-  text-align:center;
-  font-family:var(--date-display);
-  font-style:italic;
-  font-weight:800;
-  font-size:clamp(1.05rem, 4.6vw, 1.25rem);
-  line-height:1.3;
-  letter-spacing:.01em;
-  text-transform:none;
-  color:var(--date-champagne) !important;
-  text-wrap:balance;
-  /* Crisp outline + heavy dark glow */
-  text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000,
-     0 2px 6px rgba(0, 0, 0, 0.95),
-     0 0 12px rgba(10, 0, 5, 0.95) !important;
-}
-
 #date .date-display{ text-shadow:0 1px 16px rgba(22,0,6,.8); }
 
 /* Caption above the numbers */
-#date .date-countdown-caption{
-  margin:0 0 .85rem;
-  text-align:center;
-  font-family:var(--date-display);
-  font-style:italic;
-  font-weight:800;
-  font-size:clamp(1.05rem, 4.6vw, 1.25rem);
-  line-height:1.3;
-  letter-spacing:.01em;
-  text-transform:none;
-  color:var(--date-champagne) !important;
-  text-wrap:balance;
-  text-shadow:0 1px 14px rgba(22,0,6,.8);
+#date .date-countdown-caption {
+  margin: 0 0 .85rem;
+  text-align: center;
+  font-family: var(--date-display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(1.05rem, 4.6vw, 1.25rem);
+  line-height: 1.3;
+  letter-spacing: .01em;
+  text-transform: none;
+  color: var(--date-champagne) !important;
+  text-wrap: balance;
+  text-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(10, 0, 5, 0.95),
+    0 0 28px rgba(10, 0, 5, 0.85) !important;
 }
 
 /* Countdown: no boxes, no backgrounds — just big, bold numbers */
@@ -3738,45 +3686,30 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   width:1px; height:50%;
   background:linear-gradient(to bottom, transparent, rgba(246,231,180,.42), transparent);
 }
-
-/* --- OPTION 2: HIGH CONTRAST WITH CHAMPAGNE GOLD COLOR --- */
-#date .countdown-number{
-  font-family:var(--date-display) !important;
-  font-weight:700 !important;
-  line-height:1 !important;
-  letter-spacing:0 !important;
-  color:var(--date-champagne) !important;
-  font-variant-numeric:lining-nums;
-  /* 
-     1) Tight 1px dark stroke outline around every edge of the digits
-     2) Heavy black drop-shadow behind the digits
-     3) Dark burgundy glow fill behind to separate light gold from light background
-  */
-  text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000,
-     0 3px 6px rgba(0, 0, 0, 0.95),
-     0 0 14px rgba(10, 0, 5, 0.95),
-     0 0 28px rgba(10, 0, 5, 0.85) !important;
+#date .countdown-number {
+  font-family: var(--date-display) !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  color: var(--date-champagne) !important;
+  font-variant-numeric: lining-nums;
+  text-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.95),
+    0 0 18px rgba(10, 0, 5, 0.95),
+    0 0 36px rgba(10, 0, 5, 0.85) !important;
 }
-
-#date .countdown-label{
-  margin-top:.5rem !important;
-  font-family:var(--date-display) !important;
-  font-style:italic;
-  font-weight:800 !important;
-  text-transform:none !important;
-  letter-spacing:.03em !important;
-  color:var(--date-champagne) !important;
-  text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000,
-     0 2px 4px rgba(0, 0, 0, 0.95),
-     0 0 10px rgba(10, 0, 5, 0.95) !important;
+/* --- COUNTDOWN LABELS SHADOW --- */
+#date .countdown-label {
+  margin-top: .5rem !important;
+  font-family: var(--date-display) !important;
+  font-style: italic;
+  font-weight: 800 !important;
+  text-transform: none !important;
+  letter-spacing: .03em !important;
+  color: var(--date-champagne) !important;
+  text-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.95),
+    0 0 12px rgba(10, 0, 5, 0.95) !important;
 }
 /* Every digit sits in its own fixed-width cell so the numbers never wobble */
 #date .dg{ display:inline-block; width:.64em; text-align:center; }
