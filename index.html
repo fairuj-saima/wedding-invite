@@ -3680,15 +3680,23 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   width:1px; height:50%;
   background:linear-gradient(to bottom, transparent, rgba(246,231,180,.42), transparent);
 }
+
+/* --- OPTION 2: HIGH CONTRAST COUNTDOWN NUMBERS --- */
 #date .countdown-number{
   font-family:var(--date-display) !important;
   font-weight:700 !important;
   line-height:1 !important;
   letter-spacing:0 !important;
-  color:var(--date-champagne) !important;
+  color:#FFFFFF !important; /* Pure white for maximum contrast */
   font-variant-numeric:lining-nums;
-  text-shadow:0 2px 18px rgba(22,0,6,.7);
+  /* Multi-layered dark shadow creates a clear outline on bright background images */
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 0 12px rgba(10, 0, 5, 0.95),
+    0 0 24px rgba(10, 0, 5, 0.85) !important;
 }
+
+/* --- OPTION 2: HIGH CONTRAST COUNTDOWN LABELS --- */
 #date .countdown-label{
   margin-top:.5rem !important;
   font-family:var(--date-display) !important;
@@ -3696,8 +3704,11 @@ body.homepage-rising.homepage-rise-now > *:not(.invitation-opening) {
   font-weight:800 !important;
   text-transform:none !important;
   letter-spacing:.03em !important;
-  color:var(--date-champagne) !important;
-  text-shadow:0 1px 12px rgba(22,0,6,.8);
+  color:#FFF8F0 !important; /* Bright ivory for legibility */
+  /* Strong dark drop shadow */
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.95),
+    0 0 10px rgba(10, 0, 5, 0.9) !important;
 }
 /* Every digit sits in its own fixed-width cell so the numbers never wobble */
 #date .dg{ display:inline-block; width:.64em; text-align:center; }
